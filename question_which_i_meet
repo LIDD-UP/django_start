@@ -1,0 +1,23 @@
+from django.shortcuts import render
+from django.http import HttpResponse
+from django.template import loader,RequestContext
+
+# Create your views here.
+# def index(request):
+#     # 获取模板
+#     template = loader.get_template('booktest/index.html')
+#     #获取上下文
+#     context = RequestContext(request,{'title':'template_text','list':range(10)})
+#     #模板渲染和传递；
+#     return HttpResponse(template.render(context))
+
+注意此处不能用RequestContext进行传递context了；
+
+只能用：字典；
+from django.shortcuts import render
+
+def index(request):
+    context={'title':'图书列表','list':range(10)}
+    return render(request,'booktest/index.html',context)
+
+    只能用这种形式了

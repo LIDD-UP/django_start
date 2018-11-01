@@ -1,0 +1,86 @@
+django项目的创建通过django-admin startproject project_name
+app通过 进入 项目下：有一个manag.py的文件，通过这个文件创建；
+python manage.py startapp app_name
+
+添加了app之后需要在settings文件里设置；在install app 里面加上app的名字；
+
+
+django的model是继承的models.Model这个类的；
+创建好django的model之后需要迁移：
+python manage.py makemigrations
+以上只是生成一个迁移文件；
+真正的迁移时通过python manage.py migrate执行的
+
+CharField()必须跟上max_length
+
+
+如果想要使用admin 需要修改一下时间：
+# LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-hans'
+
+# TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
+
+
+USE_I18N = True
+
+USE_L10N = True
+
+USE_TZ = True
+
+如果想要自己的model在amdin上面显示，需要在admin文件里面注册：
+    如：amdin.site.register(model_class)
+
+
+还可以自定义admin界面：
+class BookInfoAdmin(admin.ModelAdmin):
+    list_display = ['id','btitle','bpub_date']
+
+
+
+admin.site.register(BookInfo,BookInfoAdmin)
+
+
+数据库和后台搞好了，就需要做：
+使用视图时需要进行两步操作：
+
+* 1.定义视图函数
+* 2.配置URLconf
+
+这里需要注意一点就是：在配置url列表的时候列表的名称必须是urlpatterns
+urlpatterns = [
+    url(r'^$',index)
+]
+
+注意整个url的配置过程，需要在booktest里面创建urls.py文件，然后导入view。index
+from django.conf.urls import url
+from booktest.views import index
+
+
+urlpatterns = [
+    url(r'^$',index)
+]
+
+
+注意url配置在django.conf.urls下面；
+然后再整个项目的urls.py文件下把booktest 的url包含进去，通过include（‘booktest.urls')注意要加双引号；
+
+模板的传递和渲染（渲染就是给前端的页面加载数据）；
+
+
+此处注意：filter只返回得才是条件过滤后得列表。get只返回一个值，是不可迭代得，
+
+还有就是url中的条件其实就是view中的请求参数；如bid就是参数；
+
+
+我知道了，urls里面的（）相当于一个参数，
+有几个括号就有多少参数，而且参数必须和view中的函数参数个数匹配，
+
+删除数据库中的元素：
+x= BookInfo.objects.get(id=1)
+x.delete()
+x.save()
+
+
+
+
