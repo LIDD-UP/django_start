@@ -21,3 +21,9 @@ def index(request):
     return render(request,'booktest/index.html',context)
 
     只能用这种形式了
+
+
+AttributeError: 'QuerySet' object has no attribute 'hname'
+注意这个问题：
+这是由于查询出来的东西是一个集合，需要遍历取出每一条记录，才能访问每一条记录的字段值；
+

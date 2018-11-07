@@ -31,23 +31,33 @@ from booktest.models import BookInfo,HeroInfo
 # b.bpub_date=datetime.now()
 # b.save()
 
-book = BookInfo.objects.get(id=1)
-h=HeroInfo()
-h.hname='杨过'
-h.hgender=2
-h.hcomment='he is a big hero'
-h.hbook=book
-h.save()
+# book = BookInfo.objects.get(id=1)
+# h=HeroInfo()
+# h.hname='杨过'
+# h.hgender=2
+# h.hcomment='he is a big hero'
+# h.hbook=book
+# h.save()
 # book = BookInfo.objects.get(id=1)
 #
 # heros = book.heroinfo_set.all()
 # for hero in heros:
 #     print(hero.hname)
 
-heros = HeroInfo.objects.filter(hbook_id=1)
+# heros = HeroInfo.objects.filter(hbook_id=1)
+#
+#
+# for hero in heros:
+#     print(hero)
+#     print(hero.hname)
 
+# heros = HeroInfo.objects.first()
+# for hero in heros:
+#     print(hero.hname)
 
-for hero in heros:
-    print(hero)
-    print(hero.hname)
-
+# heros = HeroInfo.objects.filter(hname='黄蓉')
+# heros.delete()
+hero = HeroInfo.objects.get(hname='bluesli')
+print(hero.hname)
+# hero = HeroInfo(hname='bluesli',hbook_id='1')
+# hero.save()
